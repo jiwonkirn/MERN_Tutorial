@@ -21,11 +21,18 @@ router.get("/test", (req, res) => res.json({ msg: "Users Works" }));
 // @desc    Register user
 // @access  Public
 router.post("/register", async (req, res) => {
+  const { errors, isValid } = validateRegisterInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   const user = await User.findOne({ email: req.body.email });
 
   // 중복된 아이디가 있다면 400 상태를 보낸다.
   if (user) {
-    return res.status(400).json({ email: "Email already exists" });
+    errors.email = "Email already exists";
+    return res.status(400).json(errors);
   } else {
     // 중복된 아이디가 없다면
     // 아바타를 생성한다.
@@ -46,7 +53,9 @@ router.post("/register", async (req, res) => {
     // 패스워드를 해싱한다.
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(newUser.password, salt, (err, hash) => {
-        if (err) throw err;
+        if (err) {
+          throw err;
+        }
         // 에러가 나지 않는다면 password에 해싱된 String을 덮어씌운다.
         newUser.password = hash;
         // document를 저장하고 저장한 결과값에 대한 json응답을 한다.
