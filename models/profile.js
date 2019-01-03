@@ -8,7 +8,7 @@ const ProfileSchema = new Schema({
     ref: "users"
   },
   handle: {
-    tpye: String,
+    type: String,
     require: true,
     max: 40
   },
@@ -19,7 +19,7 @@ const ProfileSchema = new Schema({
     type: String
   },
   status: {
-    tpye: String,
+    type: String,
     require: true
   },
   skills: {
@@ -27,10 +27,10 @@ const ProfileSchema = new Schema({
     require: true
   },
   bio: {
-    tpye: String
+    type: String
   },
   githubUsername: {
-    tpye: String
+    type: String
   },
   experience: [
     {
@@ -39,14 +39,14 @@ const ProfileSchema = new Schema({
         require: true
       },
       company: {
-        tpye: String,
+        type: String,
         require: true
       },
       location: {
         type: String
       },
       from: {
-        tpye: Date,
+        type: Date,
         require: true
       },
       to: {
@@ -57,7 +57,7 @@ const ProfileSchema = new Schema({
         default: false
       },
       description: {
-        tpye: String
+        type: String
       }
     }
   ],
@@ -68,7 +68,7 @@ const ProfileSchema = new Schema({
         require: true
       },
       degree: {
-        tpye: String,
+        type: String,
         require: true
       },
       fieldodstudy: {
@@ -76,7 +76,7 @@ const ProfileSchema = new Schema({
         require: true
       },
       from: {
-        tpye: Date,
+        type: Date,
         require: true
       },
       to: {
@@ -87,7 +87,7 @@ const ProfileSchema = new Schema({
         default: false
       },
       description: {
-        tpye: String
+        type: String
       }
     }
   ],
