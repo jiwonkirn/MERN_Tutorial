@@ -43,7 +43,7 @@ class Register extends Component {
   };
 
   render() {
-    const { errors } = this.props;
+    const { errors } = this.ㄴ;
 
     return (
       <div className="register">
