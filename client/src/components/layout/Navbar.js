@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { logoutUser } from "../../actions/authActions";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { logoutUser } from '../../actions/authActions';
 
 class Navbar extends Component {
-  handleLogout = e => {
+  onLogoutClick(e) {
     e.preventDefault();
     this.props.logoutUser();
-  };
+  }
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
@@ -18,7 +18,7 @@ class Navbar extends Component {
         <li className="nav-item">
           <a
             href=""
-            onClick={this.onLogoutClick}
+            onClick={this.onLogoutClick.bind(this)}
             className="nav-link"
           >
             <img
@@ -67,8 +67,8 @@ class Navbar extends Component {
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/profile">
-                  {" "}
+                <Link className="nav-link" to="/profiles">
+                  {' '}
                   Developers
                 </Link>
               </li>
@@ -90,7 +90,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { logoutUser }
-)(Navbar);
+export default connect(mapStateToProps, { logoutUser })(Navbar);
